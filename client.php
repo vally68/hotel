@@ -18,15 +18,16 @@ class Client {
   
 
     // Afficher les infos du titulaire et ses comptes
-    public function AfficherInfos(): void {
-        echo "<h3>{$this->prenom} {$this->nom}</h3>";
-        echo "Âge : " . $this->getAge() . " ans<br>";
-        echo "Ville : {$this->ville}<br>";
-        echo "<strong>Comptes :</strong><br>";
-        foreach ($this->comptes as $compte) {
-            echo "- " . $compte . "<br>";
-        }
-        echo "<br>";
+    public function AfficherInfosClient(): void {
+        echo "Réservations de ";
+        echo "{$this->prenom} {$this->nom} <br>";
+         echo "récup des infos de reservation? ";
+      
+        // echo "<strong>Comptes :</strong><br>";
+        // foreach ($this->comptes as $compte) {
+        //     echo "- " . $compte . "<br>";
+        // }
+        // echo "<br>";
     }
 }
 

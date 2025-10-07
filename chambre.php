@@ -42,9 +42,9 @@ class chambre {
 
     public function AfficherEtat(): void {
         if ($this->etat) {
-            echo "Cette chambre est disponible.";
+            echo "Cette chambre est disponible.<br>";
         } else {
-            echo "Cette chambre n'est pas disponible.";
+            echo "Cette chambre n'est pas disponible.<br>";
         }
     }
 }
