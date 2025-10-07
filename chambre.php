@@ -9,7 +9,7 @@ class chambre {
    // private array $_comptes = [];
 
     public function __construct(int $_prix,int $_nbchambre, bool $_wifi, bool $_etat) {
-        $this->nbetoile = $prix;
+        $this->prix = $_prix;
         $this->nbchambre = $_nbchambre;
         $this->wifi = $_wifi;
         $this->etat = $_etat;
@@ -26,15 +26,17 @@ class chambre {
    
 
     // Afficher les infos du titulaire et ses comptes
-    public function AfficherInfos(): void {
+     public function AfficherTarif(): void {
         echo "<h3>{$this->nbchambre}</h3>";
-        
         echo "Tarif : {$this->prix}<br>";
-        // echo "<strong>Comptes :</strong><br>";
-        // foreach ($this->comptes as $compte) {
-        //     echo "- " . $compte . "<br>";
-        // }
-        // echo "<br>";
+    }
+
+ public function AfficherWifi(): void {
+        if ($this->wifi) {
+            echo "Cette chambre possède le WiFi.";
+        } else {
+            echo "Cette chambre n'a pas de WiFi.";
+        }
     }
 }
 
