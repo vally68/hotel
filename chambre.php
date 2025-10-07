@@ -17,25 +17,34 @@ class chambre {
 
     
     public function getPrix(): int { return $this->prix; }
-    public function getNbchambre(): int { return $this->nbchambre; }
     public function getWifi(): bool { return $this->wifi; }
+    public function getNbchambre(): int { return $this->nbchambre; }
     public function getEtat(): bool { return $this->etat; }
 
  
 
    
 
-    // Afficher les infos du titulaire et ses comptes
+    // Afficher les tarifs chambre
      public function AfficherTarif(): void {
         echo "<h3>{$this->nbchambre}</h3>";
-        echo "Tarif : {$this->prix}<br>";
+        echo "Tarif : {$this->prix} €. <br>";
     }
 
  public function AfficherWifi(): void {
         if ($this->wifi) {
-            echo "Cette chambre possède le WiFi.";
+            echo "Cette chambre possède le WiFi.<br>";
         } else {
-            echo "Cette chambre n'a pas de WiFi.";
+            echo "Cette chambre n'a pas de WiFi.<br>";
+        }
+    }
+
+
+    public function AfficherEtat(): void {
+        if ($this->etat) {
+            echo "Cette chambre est disponible.";
+        } else {
+            echo "Cette chambre n'est pas disponible.";
         }
     }
 }

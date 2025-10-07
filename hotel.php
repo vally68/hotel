@@ -8,7 +8,7 @@ class hotel {
     private string $_adresse;
     private string $_codepostal;
 
-   // private array $_comptes = [];
+   // récuperer les chambres dispo? ;
 
     public function __construct(string $_nom,int $_nbetoile,int $_nbchambre, 
     string $_ville,string $_adresse, string $_codepostal) {
@@ -33,9 +33,12 @@ class hotel {
 
     // Afficher les infos du titulaire et ses comptes
     public function AfficherInfos(): void {
-        echo "<h3>{$this->nom}</h3>";
-        
-        echo "Ville : {$this->ville}<br>";
+        echo "<h3> Hotel {$this->nom}</h3>";
+        echo " {$this->nbetoile} étoiles <br>"; // trouvez comment faire que les nombres deviennent *
+        echo "{$this->nbchambre} chambres.<br>";
+        echo "{$this->adresse} ";
+        echo "{$this->codepostal} ";
+        echo " {$this->ville} ";
         // echo "<strong>Comptes :</strong><br>";
         // foreach ($this->comptes as $compte) {
         //     echo "- " . $compte . "<br>";
