@@ -92,35 +92,7 @@ class Reservation {
         echo "Du " . $this->datedebut->format('d-m-Y') . " au " . $this->datefin->format('d-m-Y') . ". ";
         echo "Total : {$this->prixtotal} €. <br>"; // a refaire 
     }
-//  public function utilHtmlTable($cols, $vals, $params = ''){
-//         $cols = explode(',', $cols);
-//         $data = '<table '.$params.'><thead><tr>';
-//         foreach($cols as $v){
-//             $data.= '<th>'.$v.'</th>';
-//         }
-//         $data.= '</tr></thead><tbody>';
-//         foreach($vals as $v){
-//             $data.= '<tr>';
-//             foreach($v as $v2){
-//                 $data.= '<td>'.$v2.'</td>';
-//             }
-//             $data.= '</tr>';
-//         }
-//         $data.= '</tbody><tfoot><tr>';
-//         foreach($cols as $v){
-//             $data.= '<th>'.$v.'</th>';
-//         }
-//         $data.= '</tr></tfoot></table>';
-//         return $data;
-    
 
-//     $col = 'CHAMBRE,PRIX,WIFI,ETAT';
-//     $value = array(
-//                       array("{$_nbchambrer}", "{$_prixchambre}","{$_wifir}","{$_etatr}" ),
-                    
-//                       );
-//     echo utilHtmlTable($col, $value);
-//                     }
                  
 }
  
