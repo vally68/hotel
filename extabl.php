@@ -99,7 +99,7 @@ class Reservation {
 ?>                              
 <?php
 function utilHtmlTable($cols, $vals, $params = '') {
-     echo "<table border='1' cellpadding='5' cellspacing='0'>";
+     //echo "<table border='1' cellpadding='5' cellspacing='0'>";
     $cols = explode(',', $cols);
     $data = '<table ' . $params . '><thead><tr>';
     
