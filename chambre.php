@@ -6,7 +6,7 @@ class chambre {
     private int $_nbchambre;
     private bool $_wifi;
     private bool $_etat;
-   // private array $_comptes = [];
+   
 
     public function __construct(int $_prix,int $_nbchambre, bool $_wifi, bool $_etat) {
         $this->prix = $_prix;
@@ -33,18 +33,18 @@ class chambre {
 
  public function AfficherWifi(): void {
         if ($this->wifi) {
-            echo "Cette chambre possède le WiFi.<br>";
+            echo "&#128246;";
         } else {
-            echo "Cette chambre n'a pas de WiFi.<br>";
+            echo " ";
         }
     }
 
 
     public function AfficherEtat(): void {
         if ($this->etat) {
-            echo "Cette chambre est disponible.<br>";
+            echo "DISPONIBLE<br>";
         } else {
-            echo "Cette chambre n'est pas disponible.<br>";
+            echo "RÉSERVÉE<br>";
         }
     }
 }
