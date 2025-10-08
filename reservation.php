@@ -38,9 +38,22 @@ class Reservation {
     public function setDateFin(DateTime $datefin): void {
         $this->datefin = $_datefin;
     }
+
+    public function __toString()
+{
+    return $this->datedebut->format('Y-m-d') . " au " . $this->datefin->format('Y-m-d');
 }
 
-echo"future fonction reservation(reprendre base fonction getage)";
+
+public function AfficherDate(): void {
+    echo "Du " . $this->datedebut->format('d-m-Y') . " au " . $this->datefin->format('d-m-Y') . ".";
+    echo "Tarif : {$this->prixtotal} €. <br>";
+}
+
+
+}
+
+echo"future fonction reservation(reprendre base fonction getage) dynamique ou dur?";
 
 
 ?>

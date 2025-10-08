@@ -39,11 +39,7 @@ class hotel {
         echo "{$this->adresse} ";
         echo "{$this->codepostal} ";
         echo " {$this->ville} ";
-        // echo "<strong>Comptes :</strong><br>";
-        // foreach ($this->comptes as $compte) {
-        //     echo "- " . $compte . "<br>";
-        // }
-        // echo "<br>";
+     
     }
 }
 

@@ -2,16 +2,18 @@
 include "chambre.php";
 include "hotel.php";
 include "client.php";
+include "reservation.php";
 
 $h1 = new hotel("Hilton",4,30,"Strasbourg","10 rue de la gare", "67000");
 $c1 = new chambre(120, 15, false, false);
 $c2 = new chambre(135, 19, true, true);
 $cl1 = new client ("Micka","MURMANN");
+$resv = new Reservation(500,new DateTime("2025-11-12"),new DateTime("2025-12-12"));
 
 
 
 
-echo "<h3>Statut des chambres de (recup infos hotel)</h3>"; // rendre dynamique
+echo "<h3>Statut des chambres de (recup infos hotel)  </h3>"; // rendre dynamique
 $h1->AfficherInfos();
 
 
@@ -24,6 +26,7 @@ $c2->AfficherWifi();
 $c2->AfficherEtat();
 
 $cl1->AfficherInfosClient();
+$resv->AfficherDate();
 
 
 

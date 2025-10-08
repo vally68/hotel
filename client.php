@@ -21,7 +21,7 @@ class Client {
     public function AfficherInfosClient(): void {
         echo "Réservations de ";
         echo "{$this->prenom} {$this->nom} <br>";
-         echo "récup des infos de reservation? ";
+        
       
         // echo "<strong>Comptes :</strong><br>";
         // foreach ($this->comptes as $compte) {
