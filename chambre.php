@@ -28,7 +28,7 @@ class chambre {
     // Afficher les tarifs chambre
      public function AfficherTarif(): void {
         echo "<h3>{$this->nbchambre}</h3>";
-        echo "Tarif : {$this->prix} €. <br>";
+        echo " {$this->prix} €. <br>";
     }
 
  public function AfficherWifi(): void {

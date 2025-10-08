@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class Reservation {
     private string $_nomr;
@@ -10,7 +10,8 @@ class Reservation {
     private bool $_wifir;
     private bool $_etatr;
     private int $_nblit;
-    private int $_prixchambre;
+    protected int $_prixchambre;
+  
 
     public function __construct(string $_nomr, string $_prenomr, int $_nbchambrer, DateTime $_datedebut,
                                 DateTime $_datefin, int $_prixtotal, bool $_wifir, int $_nblit,int $_prixchambre) {
@@ -90,37 +91,44 @@ class Reservation {
         echo "{$this->prixchambre} €. ";
         echo " WiFi : " . ($this->wifir ? "Oui" : "Non") . ") ";
         echo "Du " . $this->datedebut->format('d-m-Y') . " au " . $this->datefin->format('d-m-Y') . ". ";
-        echo "Total : {$this->prixtotal} €. <br>"; // a refaire 
+        echo "Total : {$this->prixtotal} €. <br>"; // a refaire en mode calcul (count?) 
     }
-//  public function utilHtmlTable($cols, $vals, $params = ''){
-//         $cols = explode(',', $cols);
-//         $data = '<table '.$params.'><thead><tr>';
-//         foreach($cols as $v){
-//             $data.= '<th>'.$v.'</th>';
-//         }
-//         $data.= '</tr></thead><tbody>';
-//         foreach($vals as $v){
-//             $data.= '<tr>';
-//             foreach($v as $v2){
-//                 $data.= '<td>'.$v2.'</td>';
-//             }
-//             $data.= '</tr>';
-//         }
-//         $data.= '</tbody><tfoot><tr>';
-//         foreach($cols as $v){
-//             $data.= '<th>'.$v.'</th>';
-//         }
-//         $data.= '</tr></tfoot></table>';
-//         return $data;
-    
 
-//     $col = 'CHAMBRE,PRIX,WIFI,ETAT';
-//     $value = array(
-//                       array("{$_nbchambrer}", "{$_prixchambre}","{$_wifir}","{$_etatr}" ),
-                    
-//                       );
-//     echo utilHtmlTable($col, $value);
-//                     }
                  
 }
- 
+?>                              
+<?php
+function utilHtmlTable($cols, $vals, $params = '') {
+     echo "<table border='1' cellpadding='5' cellspacing='0'>";
+    $cols = explode(',', $cols);
+    $data = '<table ' . $params . '><thead><tr>';
+    
+    
+    foreach($cols as $v){
+        $data .= '<th>' . $v . '</th>';
+    }
+    $data .= '</tr></thead><tbody>';
+    
+    
+    foreach($vals as $v){
+        $data .= '<tr>';
+        foreach($v as $v2){
+            $data .= '<td>' . $v2 . '</td>';
+        }
+        $data .= '</tr>';
+    }
+    
+    $data .= '</tbody></table>'; 
+    return $data;
+}
+?>
+
+<?php
+
+$col = 'CHAMBRE,PRIX,WIFI,ETAT';
+$value = array(
+    array('Chambre' => 'Rouge', 'Prix' => 'Medium', 'Wifi' => 'carré', 'état' => '3cm'),
+);
+
+echo utilHtmlTable($col, $value);
+?>
