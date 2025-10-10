@@ -12,9 +12,12 @@ class Reservation {
     private int $_nblit;
     private int $_prixchambre;
     private string $_hotelr;
+    private Client $_client;
+    private Chambre $_chambre;
+    
 
     public function __construct(string $_nomr, string $_prenomr, int $_nbchambrer, DateTime $_datedebut,
-                                DateTime $_datefin, int $_prixtotal, bool $_wifir, int $_nblit,int $_prixchambre,  string $_hotelr) {
+                                DateTime $_datefin, int $_prixtotal, bool $_wifir, int $_nblit,int $_prixchambre,  string $_hotelr, Client $client, Chambre $chambre ) {
         $this->nomr = $_nomr;
         $this->prenomr = $_prenomr;
         $this->nbchambrer = $_nbchambrer; 
@@ -25,9 +28,14 @@ class Reservation {
         $this->nblit = $_nblit;
         $this->prixchambre = $_prixchambre;
         $this->hotelr = $_hotelr;
+        $client->ajouterReservation($this);
+        $chambre->ajouterReservation($this);
     }
 
     // Getters
+
+    public function getClient(): Client { return $this->_client; }
+    public function getChambre(): Chambre { return $this->_chambre; }
     public function getNomr(): string {
         return $this->nomr;
     }

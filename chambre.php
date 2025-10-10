@@ -7,7 +7,7 @@ class chambre {
     private int $nbchambre;
     private bool $wifi;
     private bool $etat; // true = DISPONIBLE, false = RÉSERVÉE
-    
+    private array $_reservations = []; //tableau resa
 
     public function __construct(int $prix, int $nbchambre, bool $wifi, bool $etat) {
         $this->prix = $prix;
@@ -21,8 +21,12 @@ class chambre {
     public function getWifi(): bool { return $this->wifi; }
     public function getNbchambre(): int { return $this->nbchambre; }
     public function getEtat(): bool { return $this->etat; }
+    public function getReservations(): array { return $this->reservations; }
 
-    
+    public function ajouterReservation(Reservation $reservation): void {
+        $this->_reservations[] = $reservation;
+        $this->etat = false; // la chambre devient réservée
+    }
     
     public function AfficherStatutChambre(): void {
         $etat_texte = $this->etat ? 'DISPONIBLE' : 'RÉSERVÉE';

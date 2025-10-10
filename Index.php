@@ -7,71 +7,70 @@ include "hotel.php";
 include "client.php";
 include "reservation.php";
 
-// Création des chambres
-$chambres = [
-    new chambre(120, 1, false, true),
-    new chambre(120, 2, false, true),
-    new chambre(120, 3, false, false),
-    
-    new chambre(300, 16, true, true),
-    new chambre(300, 17, true, false),
-    new chambre(300, 18, true, true),
-    new chambre(300, 19, true, true),
-    new chambre(300, 21, true, true),
-];
 
+// Création des chambres pour Hilton
+$chambres = [];
+for ($i = 1; $i <= 30; $i++) {
+    $etat = ($i <= 3) ? false : true; // 3 premières chambres réservées
+    $prix = ($i <= 15) ? 120 : 300;
+    $wifi = ($i % 2 == 0);
+    $chambres[] = new Chambre($prix, $i, $wifi, $etat);
+}
 
-$h1 = new hotel("Hilton", 4, 30, "Strasbourg", "10 rue de la gare", "67000", 27, 3);
-$h2 = new hotel("Regent", 4, 25, "Paris", "10 rue de la paix", "75000", 22, 3);
+//création des hotels
+$h1 = new Hotel("Hilton", 4, "Strasbourg", "10 rue de la gare", "67000");
+$h2 = new Hotel("Regent", 4, "Paris", "10 rue de la paix", "75000");
+
+// Ajout des chambres à Hilton
+foreach ($chambres as $ch) {
+    $h1->ajouterChambre($ch);
+}
+
 
 $cl1 = new client("Micka", "MURMANN");
 $cl2 = new client("Virgile", "GIBELLO");
 
-$resv1 = new Reservation("Micka", "MURMANN", 3, new DateTime("2021-03-11"), new DateTime("2021-03-15"),0, true, 2, 120, "Hilton");
+
+$resv1 = new Reservation("Micka", "MURMANN", 3, new DateTime("2021-03-11"), new DateTime("2021-03-15"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[0]);
 $resv1->calculerPrixTotal();
 
-$resv2 = new Reservation("Micka", "MURMANN", 4, new DateTime("2021-04-01"), new DateTime("2021-04-17"),0, true, 2, 120, "Hilton");
+$resv2 = new Reservation("Micka", "MURMANN", 4, new DateTime("2021-04-01"), new DateTime("2021-04-17"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[1]);
 $resv2->calculerPrixTotal();
 
-$resv3 = new Reservation("Virgile", "GIBELLO", 17, new DateTime("2021-01-01"), new DateTime("2021-01-01"),0, true, 1, 120, "Hilton");
+$resv3 = new Reservation("Virgile", "GIBELLO", 17, new DateTime("2021-01-01"), new DateTime("2021-01-01"),
+    0, true, 1, 120, "Hilton", $cl2, $chambres[16]);
 
-// Mettre les réservations dans un tableau
-$reservations = [$resv1, $resv2,$resv3];
+$reservations = [$resv1, $resv2, $resv3];
 
-// Compter les réservations par hôtel
+
 $nbResahotel = Reservation::ReservationsHotel($reservations, "Hilton");
 $nbResahotel2 = Reservation::ReservationsHotel($reservations, "Regent");
 
 echo "<h4>Hotel Hilton : $nbResahotel réservation(s).</h4>";
-echo $cl1->AfficherInfosClient(), $resv1->AfficherResa(), $resv2->AfficherResa();;
+echo $cl1->AfficherInfosClient(), $resv1->AfficherResa(), $resv2->AfficherResa();
 echo $cl2->AfficherInfosClient(), $resv3->AfficherResa();
 echo "<h4>Hotel Regent : $nbResahotel2 réservation(s).</h4>";
 
 
 $h1->AfficherInfos();
-$cl1->AfficherInfosClient();
-
 
 $nbResaMicka = Reservation::ReservationsClient($reservations, "Micka", "MURMANN");
-echo "<h4>$nbResaMicka réservation(s).</h4>";
-
-
-$resv1->AfficherResa();
-$resv2->AfficherResa();
+echo "<h4>$nbResaMicka réservation(s) pour Micka MURMANN.</h4>";
 
 $totalresv = $resv1->getPrixTotal() + $resv2->getPrixTotal();
-echo "Total : {$totalresv} €.<br>";
+echo "<p>Total : {$totalresv} €.</p>";
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Statuts des chambres</title>
-<link rel="stylesheet" href="style.css">
+    <title>Statut des chambres</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="container">
         <h1>Statuts des chambres de Hilton **** Strasbourg</h1>
 
@@ -88,8 +87,8 @@ echo "Total : {$totalresv} €.<br>";
                 <?php
                 $count = 0;
                 foreach ($chambres as $chambre) {
-                    
-                    if ($count == 3) {
+                  
+                    if ($count == 15) {
                         echo '<tr class="separator-row"><td colspan="4"></td></tr>';
                     }
                     $chambre->AfficherStatutChambre();
@@ -99,7 +98,5 @@ echo "Total : {$totalresv} €.<br>";
             </tbody>
         </table>
     </div>
-    
-  
 </body>
 </html>
