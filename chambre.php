@@ -1,18 +1,19 @@
 <?php
-// Titulaire.php
+
 class chambre {
     
-    private int $_prix;
-    private int $_nbchambre;
-    private bool $_wifi;
-    private bool $_etat;
-   
+     
+    private int $prix;
+    private int $nbchambre;
+    private bool $wifi;
+    private bool $etat; // true = DISPONIBLE, false = RÉSERVÉE
+    
 
-    public function __construct(int $_prix,int $_nbchambre, bool $_wifi, bool $_etat) {
-        $this->prix = $_prix;
-        $this->nbchambre = $_nbchambre;
-        $this->wifi = $_wifi;
-        $this->etat = $_etat;
+    public function __construct(int $prix, int $nbchambre, bool $wifi, bool $etat) {
+        $this->prix = $prix;
+        $this->nbchambre = $nbchambre;
+        $this->wifi = $wifi;
+        $this->etat = $etat;
     }
 
     
@@ -21,34 +22,20 @@ class chambre {
     public function getNbchambre(): int { return $this->nbchambre; }
     public function getEtat(): bool { return $this->etat; }
 
- 
-
-   
-
-    // Afficher les tarifs chambre
-     public function AfficherTarif(): void {
-        echo "{$this->nbchambre}";
-        echo " {$this->prix} €. ";
-    }
-
- public function AfficherWifi(): void {
-        if ($this->wifi) {
-            echo "&#128246;";
-        } else {
-            echo "NON ";
-        }
-    }
-
-
-    public function AfficherEtat(): void {
-        if ($this->etat) {
-            echo "DISPONIBLE<br>";
-        } else {
-            echo "RÉSERVÉE<br>";
-        }
+    
+    
+    public function AfficherStatutChambre(): void {
+        $etat_texte = $this->etat ? 'DISPONIBLE' : 'RÉSERVÉE';
+        $etat_classe = $this->etat ? 'disponible' : 'reservée';
+        $wifi_classe = $this->wifi ? '<span class="wifi-icon">&#128246;</span>' : ''; 
+        echo '<tr class="room-row">';
+        echo '    <td class="col-chambre">Chambre ' . $this->nbchambre . '</td>';
+        echo '    <td class="col-prix">' . $this->prix . ' €</td>';
+        echo '    <td class="col-wifi">' . $wifi_classe . '</td>';
+        echo '    <td class="col-etat">';
+        echo '        <span class="' . $etat_classe . '">' . $etat_texte . '</span>';
+        echo '    </td>';
+        echo '</tr>';
     }
 }
-
-
-
 ?>

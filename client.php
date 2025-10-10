@@ -20,14 +20,7 @@ class Client {
     // Afficher les infos du titulaire et ses comptes
     public function AfficherInfosClient(): void {
         echo "<h4>Réservations de {$this->nom} {$this->prenom} </h4>";
-        
-        
-      
-        // echo "<strong>Comptes :</strong><br>";
-        // foreach ($this->comptes as $compte) {
-        //     echo "- " . $compte . "<br>";
-        // }
-        // echo "<br>";
+   
     }
 }
 

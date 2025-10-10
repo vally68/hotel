@@ -1,6 +1,6 @@
 <?php
 
-// Titulaire.php
+
 class hotel {
     private string $_nom;
     private int $_nbetoile;
@@ -51,7 +51,7 @@ class hotel {
      
     }
 
-    //ici faire récup des chambres loués pour modifier le total de chambre libre et celle loué
+
 }
 
 
