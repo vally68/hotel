@@ -52,18 +52,7 @@ class Hotel {
         echo "<p>Chambres réservées : {$this->getNbChambresReservees()}</p>";
         echo "<p>Chambres disponibles : {$this->getNbChambresDisponibles()}</p>";
 
-        echo "<h3>Liste des chambres :</h3>";
-        if (empty($this->_chambres)) { 
-            echo "<p>Aucune chambre enregistrée.</p>";
-        } else {
-            echo "<ul>";
-            foreach ($this->_chambres as $chambre) { 
-                $etat = $chambre->getEtat() ? "DISPONIBLE" : "RÉSERVÉE";
-                $wifi = $chambre->getWifi() ? "WiFi" : "Pas de WiFi";
-                echo "<li>Chambre {$chambre->getNbchambre()} - {$chambre->getPrix()} € ({$wifi}) - {$etat}</li>";
-            }
-            echo "</ul>";
-        }
+       
     }
 }
 
