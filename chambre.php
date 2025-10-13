@@ -27,7 +27,7 @@ class Chambre {
         $this->_reservations[] = $reservation;
         $this->etat = false; // la chambre devient réservée
     }
-    
+  
     public function AfficherStatutChambre(): void {
         $etat_texte = $this->etat ? 'DISPONIBLE' : 'RÉSERVÉE';
         $etat_classe = $this->etat ? 'disponible' : 'reservée';

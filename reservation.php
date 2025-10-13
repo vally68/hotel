@@ -2,8 +2,8 @@
 
 class Reservation {
 
-    private string $_nomr;
-    private string $_prenomr;
+    private string $_nomreservation;
+    private string $_prenomreservation;
     private int $_nbchambrer;
     private DateTime $_datedebut;
     private DateTime $_datefin;
@@ -14,13 +14,14 @@ class Reservation {
     private int $_prixchambre;
     private string $_hotelr;
     private Client $_client;
-    private Chambre $_chambre;
+    private array $_chambre = []; //tableau resachambre
+
     
 
-    public function __construct(string $_nomr, string $_prenomr, int $_nbchambrer, DateTime $_datedebut,
+    public function __construct(string $_nomreservation, string $_prenomreservation, int $_nbchambrer, DateTime $_datedebut,
                                 DateTime $_datefin, int $_prixtotal, bool $_wifir, int $_nblit,int $_prixchambre,  string $_hotelr, Client $client, Chambre $chambre ) {
-        $this->nomr = $_nomr;
-        $this->prenomr = $_prenomr;
+        $this->nomreservation = $_nomreservation;
+        $this->prenomreservation = $_prenomreservation;
         $this->nbchambrer = $_nbchambrer; 
         $this->datedebut = $_datedebut;
         $this->datefin = $_datefin;
@@ -37,12 +38,12 @@ class Reservation {
 
     public function getClient(): Client { return $this->_client; }
     public function getChambre(): Chambre { return $this->_chambre; }
-    public function getNomr(): string {
-        return $this->nomr;
+    public function getNomReservation(): string {
+        return $this->nomreservation;
     }
 
-    public function getPrenomr(): string {
-        return $this->prenomr;
+    public function getPrenomreservation(): string {
+        return $this->prenomreservation;
     }
 
     public function getNbchambrer(): int {
@@ -120,8 +121,8 @@ public static function ReservationsClient(array $reservations, string $nom, stri
 
     foreach ($reservations as $resa) {
         
-        if (strtolower($resa->getNomr()) === strtolower($nom)
-            && strtolower($resa->getPrenomr()) === strtolower($prenom)) {
+        if (strtolower($resa->getNomreservation()) === strtolower($nom)
+            && strtolower($resa->getPrenomreservation()) === strtolower($prenom)) {
             $compteur++;
         }
     }
