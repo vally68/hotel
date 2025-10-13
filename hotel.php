@@ -1,59 +1,59 @@
 <?php
 
-// Titulaire.php
-class hotel {
+class Hotel {
     private string $_nom;
     private int $_nbetoile;
-    private int $_nbchambre;
     private string $_ville;
     private string $_adresse;
     private string $_codepostal;
-    private int $_chambreresa;
-    private int $_chambredispo;
+    private array $_chambres = [];
 
-   // récuperer les chambres dispo? ;
-
-    public function __construct(string $_nom,int $_nbetoile,int $_nbchambre, 
-    string $_ville,string $_adresse, string $_codepostal,int $_chambreresa,int $_chambredispo) {
-        $this->nom = $_nom;
-        $this->nbetoile = $_nbetoile;
-        $this->nbchambre = $_nbchambre;
-        $this->ville = $_ville;
-        $this->adresse = $_adresse;
-        $this->codepostal = $_codepostal;
-        $this->chambreresa = $_chambreresa;
-        $this->chambredispo = $_chambredispo;
+    public function __construct(string $nom, int $nbetoile, string $ville, string $adresse, string $codepostal) {
+        $this->nom = $nom;
+        $this->nbetoile = $nbetoile;
+        $this->ville = $ville;
+        $this->adresse = $adresse;
+        $this->codepostal = $codepostal;
     }
 
-    public function getNom(): string { return $this->nom; }
-    public function getNbetoile(): int { return $this->nbetoile; }
-    public function getNbchambre(): int { return $this->nbchambre; }
-    public function getVille(): string { return $this->ville; }
-    public function getAdresse(): string { return $this->adresse; }
-    public function getCodepostal(): string { return $this->codepostal; }
-    public function getChambreresa(): int { return $this->chambreresa; }
-    public function getChambredispo(): int { return $this->chambredispo; }
-
- 
-
-   
-
-    // Afficher les infos de l'hotel
-    public function AfficherInfos(): void {
-        echo "<h3> {$this->nom} {$this->nbetoile} {$this->ville}</h3>";
-        echo "{$this->adresse} ";
-        echo "{$this->codepostal} ";
-        echo " {$this->ville} <br>";
-        echo "Nombre de chambres: {$this->nbchambre} <br>";
-        echo "Nombre de chambres réservées: {$this->chambreresa} <br>";
-        echo "Nombre de chambres dispo: {$this->chambredispo} ";
-        // echo " {$this->nbetoile} étoiles <br>"; // trouvez comment faire que les nombres deviennent *
-     
+    // Ajouter une chambre
+    public function ajouterChambre(Chambre $chambre): void {
+        $this->_chambres[] = $chambre; 
     }
 
-    //ici faire récup des chambres loués pour modifier le total de chambre libre et celle loué
+    // Getters pour info chambres
+    public function getNbChambres(): int {
+        return count($this->_chambres); 
+    }
+
+    public function getNbChambresReservees(): int {
+        $count = 0;
+        foreach ($this->_chambres as $chambre) {
+            if (!$chambre->getEtat()) $count++;
+        }
+        return $count;
+    }
+
+    public function getNbChambresDisponibles(): int {
+        $count = 0;
+        foreach ($this->_chambres as $chambre) { 
+            if ($chambre->getEtat()) $count++;
+        }
+        return $count;
+    }
+
+    // Afficher infos
+    public function afficherInfos(): void {
+        $etoiles = str_repeat("*", $this->nbetoile);
+
+        echo "<h2>{$this->nom} {$etoiles} - {$this->ville}</h2>";
+        echo "<p>{$this->adresse}, {$this->codepostal} {$this->ville}</p>";
+        echo "<p>Nombre total de chambres : {$this->getNbChambres()}</p>";
+        echo "<p>Chambres réservées : {$this->getNbChambresReservees()}</p>";
+        echo "<p>Chambres disponibles : {$this->getNbChambresDisponibles()}</p>";
+
+       
+    }
 }
-
-
 
 ?>

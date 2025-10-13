@@ -1,0 +1,89 @@
+   
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 700px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .room-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .room-table th {
+            text-align: left;
+            padding: 10px 15px;
+            font-weight: normal;
+            color: #555;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .room-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+        
+        
+        .room-table tr:nth-child(even) { 
+             background-color: #f9f9f9; 
+        }
+
+        .room-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        
+        .col-chambre { width: 30%; font-weight: bold; }
+        .col-prix { width: 25%; color: #333; }
+        .col-wifi { width: 20%; text-align: center; }
+        .col-etat { width: 25%; text-align: right; }
+
+        /* Styles des badges d'état */
+        .disponible, .reservée {
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .disponible {
+            background-color: #4CAF50; 
+        }
+
+        .reservée {
+            background-color: #F44336; 
+        }
+        
+        /* Style de l'icône WiFi */
+        .wifi-icon {
+            font-size: 20px;
+            color: #555;
+        }
+        
+        /* Simuler les espaces (lignes vides) */
+        .separator-row td {
+            height: 20px; 
+            border-bottom: none;
+            padding: 0;
+            background-color: white; 
+        }
+
+ 

@@ -1,5 +1,5 @@
 <?php
-
+/*
 class Reservation {
     private string $_nomr;
     private string $_prenomr;
@@ -11,9 +11,10 @@ class Reservation {
     private bool $_etatr;
     private int $_nblit;
     private int $_prixchambre;
+    private string $_hotelr;
 
     public function __construct(string $_nomr, string $_prenomr, int $_nbchambrer, DateTime $_datedebut,
-                                DateTime $_datefin, int $_prixtotal, bool $_wifir, int $_nblit,int $_prixchambre) {
+                                DateTime $_datefin, int $_prixtotal, bool $_wifir, int $_nblit,int $_prixchambre,  string $_hotelr) {
         $this->nomr = $_nomr;
         $this->prenomr = $_prenomr;
         $this->nbchambrer = $_nbchambrer; 
@@ -23,6 +24,7 @@ class Reservation {
         $this->wifir = $_wifir;
         $this->nblit = $_nblit;
         $this->prixchambre = $_prixchambre;
+        $this->hotelr = $_hotelr;
     }
 
     // Getters
@@ -54,14 +56,14 @@ class Reservation {
         return $this->wifir;
     }
 
-    // Exemple si tu veux afficher une phrase directement
-    public function afficherWifi(): void {
-        if ($this->_wifir) {
-            echo "Cette chambre possède le WiFi.<br>";
-        } else {
-            echo "Cette chambre n'a pas de WiFi.<br>";
-        }
-    }
+  
+    // public function afficherWifi(): void {
+    //     if ($this->wifir) {
+    //         echo "Cette chambre possède le WiFi.<br>";
+    //     } else {
+    //         echo "Cette chambre n'a pas de WiFi.<br>";
+    //     }
+    // }
 
    public function getNblit(): int {
         return $this->nblit;
@@ -71,6 +73,9 @@ class Reservation {
         return $this->prixchambre;
     }
 
+    public function getHotelr(): string {
+        return $this->hotelr;
+    }
     // Setters
     public function setPrixTotal(int $_prixtotal): void {
         $this->prixtotal = $_prixtotal;
@@ -92,7 +97,35 @@ class Reservation {
         echo "Du " . $this->datedebut->format('d-m-Y') . " au " . $this->datefin->format('d-m-Y') . ". ";
         echo "Total : {$this->prixtotal} €. <br>"; // a refaire 
     }
+//  public function utilHtmlTable($cols, $vals, $params = ''){
+//         $cols = explode(',', $cols);
+//         $data = '<table '.$params.'><thead><tr>';
+//         foreach($cols as $v){
+//             $data.= '<th>'.$v.'</th>';
+//         }
+//         $data.= '</tr></thead><tbody>';
+//         foreach($vals as $v){
+//             $data.= '<tr>';
+//             foreach($v as $v2){
+//                 $data.= '<td>'.$v2.'</td>';
+//             }
+//             $data.= '</tr>';
+//         }
+//         $data.= '</tbody><tfoot><tr>';
+//         foreach($cols as $v){
+//             $data.= '<th>'.$v.'</th>';
+//         }
+//         $data.= '</tr></tfoot></table>';
+//         return $data;
+    
 
+//     $col = 'CHAMBRE,PRIX,WIFI,ETAT';
+//     $value = array(
+//                       array("{$_nbchambrer}", "{$_prixchambre}","{$_wifir}","{$_etatr}" ),
+                    
+//                       );
+//     echo utilHtmlTable($col, $value);
+//                     }
                  
 }
  
