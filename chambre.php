@@ -1,6 +1,6 @@
 <?php
 
-class chambre {
+class Chambre {
     
      
     private int $prix;

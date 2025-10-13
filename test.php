@@ -95,37 +95,46 @@ class Reservation {
         echo "{$this->prixchambre} €. ";
         echo " WiFi : " . ($this->wifir ? "Oui" : "Non") . ") ";
         echo "Du " . $this->datedebut->format('d-m-Y') . " au " . $this->datefin->format('d-m-Y') . ". ";
-        echo "Total : {$this->prixtotal} €. <br>"; // a refaire 
+        echo "Sous-Total : {$this->prixtotal} €. <br>"; 
     }
-//  public function utilHtmlTable($cols, $vals, $params = ''){
-//         $cols = explode(',', $cols);
-//         $data = '<table '.$params.'><thead><tr>';
-//         foreach($cols as $v){
-//             $data.= '<th>'.$v.'</th>';
-//         }
-//         $data.= '</tr></thead><tbody>';
-//         foreach($vals as $v){
-//             $data.= '<tr>';
-//             foreach($v as $v2){
-//                 $data.= '<td>'.$v2.'</td>';
-//             }
-//             $data.= '</tr>';
-//         }
-//         $data.= '</tbody><tfoot><tr>';
-//         foreach($cols as $v){
-//             $data.= '<th>'.$v.'</th>';
-//         }
-//         $data.= '</tr></tfoot></table>';
-//         return $data;
-    
 
-//     $col = 'CHAMBRE,PRIX,WIFI,ETAT';
-//     $value = array(
-//                       array("{$_nbchambrer}", "{$_prixchambre}","{$_wifir}","{$_etatr}" ),
-                    
-//                       );
-//     echo utilHtmlTable($col, $value);
-//                     }
-                 
+
+public function calculerPrixTotal(): int {
+    // Calcul du nombre de jours
+    $interval = $this->datedebut->diff($this->datefin);
+    $nbJours = $interval->days;
+
+    $prixBase =  $this->prixchambre * $nbJours;
+
+    $total = $prixBase ;
+
+    $this->prixtotal = $total;
+
+    return $total;
 }
- 
+
+public static function ReservationsClient(array $reservations, string $nom, string $prenom): int {
+    $compteur = 0;
+
+    foreach ($reservations as $resa) {
+        
+        if (strtolower($resa->getNomr()) === strtolower($nom)
+            && strtolower($resa->getPrenomr()) === strtolower($prenom)) {
+            $compteur++;
+        }
+    }
+
+    return $compteur;
+}
+
+public static function ReservationsHotel(array $reservationshh, string $hotelNom): int {
+        $compteur = 0;
+        foreach ($reservationshh as $resahh) {
+            if (strtolower($resahh->getHotelr()) === strtolower($hotelNom)) {
+                $compteur++;
+            }
+        }
+        return $compteur;
+    }
+}
+ a servi pour les tests sans risquer de perdre les infos sur reservation */

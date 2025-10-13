@@ -2,10 +2,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include "chambre.php"; 
-include "hotel.php";
-include "client.php";
-include "reservation.php";
+include "Chambre.php"; 
+include "Hotel.php";
+include "Client.php";
+include "Reservation.php";
 
 
 // Création des chambres pour Hilton
@@ -39,8 +39,9 @@ $resv2 = new Reservation("Micka", "MURMANN", 4, new DateTime("2021-04-01"), new 
     0, true, 2, 120, "Hilton", $cl1, $chambres[1]);
 $resv2->calculerPrixTotal();
 
-$resv3 = new Reservation("Virgile", "GIBELLO", 17, new DateTime("2021-01-01"), new DateTime("2021-01-01"),
+$resv3 = new Reservation("Virgile", "GIBELLO", 17, new DateTime("2021-01-01"), new DateTime("2021-01-02"),
     0, true, 1, 120, "Hilton", $cl2, $chambres[16]);
+    $resv3->calculerPrixTotal();
 
 $reservations = [$resv1, $resv2, $resv3];
 
@@ -58,6 +59,8 @@ $h1->AfficherInfos();
 
 $nbResaMicka = Reservation::ReservationsClient($reservations, "Micka", "MURMANN");
 echo "<h4>$nbResaMicka réservation(s) pour Micka MURMANN.</h4>";
+
+
 
 $totalresv = $resv1->getPrixTotal() + $resv2->getPrixTotal();
 echo "<p>Total : {$totalresv} €.</p>";
