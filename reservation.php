@@ -1,6 +1,7 @@
 <?php
 
 class Reservation {
+
     private string $_nomr;
     private string $_prenomr;
     private int $_nbchambrer;
@@ -64,14 +65,6 @@ class Reservation {
         return $this->wifir;
     }
 
-  
-    // public function afficherWifi(): void {
-    //     if ($this->wifir) {
-    //         echo "Cette chambre possède le WiFi.<br>";
-    //     } else {
-    //         echo "Cette chambre n'a pas de WiFi.<br>";
-    //     }
-    // }
 
    public function getNblit(): int {
         return $this->nblit;
@@ -110,6 +103,7 @@ class Reservation {
 public function calculerPrixTotal(): int {
     // Calcul du nombre de jours
     $interval = $this->datedebut->diff($this->datefin);
+
     $nbJours = $interval->days;
 
     $prixBase =  $this->prixchambre * $nbJours;
@@ -144,6 +138,7 @@ public static function ReservationsHotel(array $reservationshh, string $hotelNom
         }
         return $compteur;
     }
+    
 }
                  
 

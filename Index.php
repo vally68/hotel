@@ -89,6 +89,7 @@ echo "<p>Total : {$totalresv} €.</p>";
             <tbody>
                 <?php
                 $count = 0;
+                
                 foreach ($chambres as $chambre) {
                   
                     if ($count == 15) {
