@@ -50,7 +50,8 @@ class Hotel {
     foreach ($this->_chambres as $chambre)  {
        
            //echo tableau reservation foreach dans un foreach ;
-      
+           //   foreach ($this->_reservations as $resa)
+            // echo $resa;
         }
 
 }
