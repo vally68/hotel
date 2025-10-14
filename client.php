@@ -1,43 +1,47 @@
 <?php
-// client.php
 class Client {
     private string $_nom;
     private string $_prenom;
-    private array $_reservations = []; // Tableau des réservations par client
+    private array $_reservations = []; // Tableau des réservations du client
 
-    public function __construct(string $_nom, string $_prenom) {
-        $this->nom = $_nom;
-        $this->prenom = $_prenom;
+    public function __construct(string $nom, string $prenom) {
+        $this->_nom = $nom;
+        $this->_prenom = $prenom;
     }
 
     public function getNom(): string {
-        return $this->nom;
+        return $this->_nom;
     }
 
     public function getPrenom(): string {
-        return $this->prenom;
+        return $this->_prenom;
     }
 
     public function getReservations(): array {
-        return $this->reservations;
+        return $this->_reservations;
     }
 
     public function ajouterReservation(Reservation $reservation): void {
-        $this->reservations[] = $reservation;
+        $this->_reservations[] = $reservation;
     }
 
-    // Afficher les infos du titulaire et ses comptes
+    // Afficher les infos du client et ses réservations
     public function afficherInfosClient(): void {
-        echo "<h4>Réservations de {$this->prenom} {$this->nom}</h4>";
-        if (empty($this->reservations)) {
+        echo "<h4>Réservations de {$this->_prenom} {$this->_nom}</h4>";
+        
+        if (empty($this->_reservations)) {
             echo "<p>Aucune réservation.</p>";
         } else {
             echo "<ul>";
-            foreach ($this->reservations as $reservation) {
-                echo "<li>{$reservation}</li>";
+            foreach ($this->_reservations as $reservation) {
+                echo "<li>{$reservation}</li>"; // __toString() de Reservation doit exister
             }
             echo "</ul>";
         }
+    }
+
+    public function __toString(): string {
+        return "{$this->_prenom} {$this->_nom}";
     }
 }
 ?>

@@ -1,7 +1,6 @@
 <?php
 
 class Reservation {
-
     private string $_nomreservation;
     private string $_prenomreservation;
     private int $_nbchambrer;
@@ -9,138 +8,110 @@ class Reservation {
     private DateTime $_datefin;
     private int $_prixtotal;
     private bool $_wifir;
-    private bool $_etatr;
     private int $_nblit;
     private int $_prixchambre;
     private string $_hotelr;
     private Client $_client;
-    private array $_chambre = []; //tableau resachambre
+    private Chambre $_chambre;
 
-    
+    public function __construct(
+        string $nomreservation,
+        string $prenomreservation,
+        int $nbchambrer,
+        DateTime $datedebut,
+        DateTime $datefin,
+        int $prixtotal,
+        bool $wifir,
+        int $nblit,
+        int $prixchambre,
+        string $hotelr,
+        Client $client,
+        Chambre $chambre
+    ) {
+        $this->_nomreservation = $nomreservation;
+        $this->_prenomreservation = $prenomreservation;
+        $this->_nbchambrer = $nbchambrer;
+        $this->_datedebut = $datedebut;
+        $this->_datefin = $datefin;
+        $this->_prixtotal = $prixtotal;
+        $this->_wifir = $wifir;
+        $this->_nblit = $nblit;
+        $this->_prixchambre = $prixchambre;
+        $this->_hotelr = $hotelr;
+        $this->_client = $client;
+        $this->_chambre = $chambre;
 
-    public function __construct(string $_nomreservation, string $_prenomreservation, int $_nbchambrer, DateTime $_datedebut,
-                                DateTime $_datefin, int $_prixtotal, bool $_wifir, int $_nblit,int $_prixchambre,  string $_hotelr, Client $client, Chambre $chambre ) {
-        $this->nomreservation = $_nomreservation;
-        $this->prenomreservation = $_prenomreservation;
-        $this->nbchambrer = $_nbchambrer; 
-        $this->datedebut = $_datedebut;
-        $this->datefin = $_datefin;
-        $this->prixtotal = $_prixtotal;
-        $this->wifir = $_wifir;
-        $this->nblit = $_nblit;
-        $this->prixchambre = $_prixchambre;
-        $this->hotelr = $_hotelr;
+        // Lien bidirectionnel
         $client->ajouterReservation($this);
         $chambre->ajouterReservation($this);
     }
 
-    // Getters
-
+    // --- GETTERS ---
     public function getClient(): Client { return $this->_client; }
     public function getChambre(): Chambre { return $this->_chambre; }
-    public function getNomReservation(): string {
-        return $this->nomreservation;
+    public function getNomReservation(): string { return $this->_nomreservation; }
+    public function getPrenomReservation(): string { return $this->_prenomreservation; }
+    public function getNbchambrer(): int { return $this->_nbchambrer; }
+    public function getDateDebut(): DateTime { return $this->_datedebut; }
+    public function getDateFin(): DateTime { return $this->_datefin; }
+    public function getPrixTotal(): int { return $this->_prixtotal; }
+    public function getWifi(): bool { return $this->_wifir; }
+    public function getNblit(): int { return $this->_nblit; }
+    public function getPrixchambre(): int { return $this->_prixchambre; }
+    public function getHotelr(): string { return $this->_hotelr; }
+
+    // --- SETTERS ---
+    public function setPrixTotal(int $prixtotal): void {
+        $this->_prixtotal = $prixtotal;
     }
 
-    public function getPrenomreservation(): string {
-        return $this->prenomreservation;
+    public function setDateFin(DateTime $datefin): void {
+        $this->_datefin = $datefin;
     }
 
-    public function getNbchambrer(): int {
-        return $this->nbchambrer;
-    }
-
-    public function getDateDebut(): DateTime {
-        return $this->datedebut;
-    }
-
-    public function getDateFin(): DateTime {
-        return $this->datefin;
-    }
-
-    public function getPrixTotal(): int {
-        return $this->prixtotal;
-    }
-
-    public function getWifi(): bool {
-        return $this->wifir;
-    }
-
-
-   public function getNblit(): int {
-        return $this->nblit;
-    }
-
-    public function getPrixchambre(): int {
-        return $this->prixchambre;
-    }
-
-    public function getHotelr(): string {
-        return $this->hotelr;
-    }
-    // Setters
-    public function setPrixTotal(int $_prixtotal): void {
-        $this->prixtotal = $_prixtotal;
-    }
-
-    public function setDateFin(DateTime $_datefin): void {
-        $this->datefin = $_datefin;
-    }
-
+    // --- AFFICHAGE ---
     public function __toString(): string {
-        return $this->datedebut->format('Y-m-d') . " au " . $this->datefin->format('Y-m-d');
+        return "Réservation du " . $this->_datedebut->format('d/m/Y') .
+               " au " . $this->_datefin->format('d/m/Y') .
+               " (" . $this->_hotelr . ")";
     }
 
-    public function AfficherResa(): void {
-        echo "Chambre : {$this->nbchambrer} ";
-        echo "( {$this->nblit} lits ";
-        echo "{$this->prixchambre} €. ";
-        echo " WiFi : " . ($this->wifir ? "Oui" : "Non") . ") ";
-        echo "Du " . $this->datedebut->format('d-m-Y') . " au " . $this->datefin->format('d-m-Y') . ". ";
-        echo "Sous-Total : {$this->prixtotal} €. <br>"; 
+    public function afficherResa(): void {
+        echo "Chambre {$this->_nbchambrer} ({$this->_nblit} lits, {$this->_prixchambre} €";
+        echo ", WiFi : " . ($this->_wifir ? "Oui" : "Non") . ")";
+        echo " — Du " . $this->_datedebut->format('d-m-Y') . " au " . $this->_datefin->format('d-m-Y');
+        echo " — Sous-total : {$this->_prixtotal} €<br>";
     }
 
-
-public function calculerPrixTotal(): int {
-    // Calcul du nombre de jours
-    $interval = $this->datedebut->diff($this->datefin);
-
-    $nbJours = $interval->days;
-
-    $prixBase =  $this->prixchambre * $nbJours;
-
-    $total = $prixBase ;
-
-    $this->prixtotal = $total;
-
-    return $total;
-}
-
-public static function ReservationsClient(array $reservations, string $nom, string $prenom): int {
-    $compteur = 0;
-
-    foreach ($reservations as $resa) {
-        
-        if (strtolower($resa->getNomreservation()) === strtolower($nom)
-            && strtolower($resa->getPrenomreservation()) === strtolower($prenom)) {
-            $compteur++;
-        }
+    // --- MÉTHODES DE CALCUL ---
+    public function calculerPrixTotal(): int {
+        $interval = $this->_datedebut->diff($this->_datefin);
+        $nbJours = $interval->days ?: 1; // minimum 1 jour
+        $this->_prixtotal = $this->_prixchambre * $nbJours;
+        return $this->_prixtotal;
     }
 
-    return $compteur;
-}
-
-public static function ReservationsHotel(array $reservationshh, string $hotelNom): int {
+    // --- STATIQUES ---
+    public static function ReservationsClient(array $reservations, string $nom, string $prenom): int {
         $compteur = 0;
-        foreach ($reservationshh as $resahh) {
-            if (strtolower($resahh->getHotelr()) === strtolower($hotelNom)) {
+        foreach ($reservations as $resa) {
+            if (
+                strtolower($resa->getNomReservation()) === strtolower($nom) &&
+                strtolower($resa->getPrenomReservation()) === strtolower($prenom)
+            ) {
                 $compteur++;
             }
         }
         return $compteur;
     }
-    
-}
-                 
 
- 
+    public static function ReservationsHotel(array $reservations, string $hotelNom): int {
+        $compteur = 0;
+        foreach ($reservations as $resa) {
+            if (strtolower($resa->getHotelr()) === strtolower($hotelNom)) {
+                $compteur++;
+            }
+        }
+        return $compteur;
+    }
+}
