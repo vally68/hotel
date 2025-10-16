@@ -115,10 +115,9 @@ class Reservation {
         return $compteur;
     }
 
-    // public function calculerSousTotal(): int {
-    //     $interval = $this->_datedebut->diff($this->_datefin);
-    //     $nbJours = $interval->days ?: 1; // minimum 1 jour
-    //     $this->_prixtotal = $this->_prixchambre * $nbJours;
-    //     return $this->_prixtotal;
-    // }
+       // --- TOTAL GÉNÉRAL ---
+    public static function calculerTotalReservations(array $reservations): int {
+        return array_sum(array_map(fn($resa) => $resa->calculerSousTotal(), $reservations));
+    }
+
 }

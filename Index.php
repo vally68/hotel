@@ -100,8 +100,9 @@ echo "<h4>Hotel Hilton : $nbResahotel réservation(s).</h4>";
 
 $reservations = [$resv1, $resv2, $resv4, $resv5, $resv6, $resv7, $resv8, $resv9, $resv10];
 //a déplacer
-// $totalresv2 = array_sum(array_map(fn($resa) => $resa->calculerSousTotal(), $reservations));
-// echo "<p>Total : {$totalresv2} €. NF</p>";
+$totalresv2 = Reservation::calculerTotalReservations($reservations);
+echo "<p>Total : {$totalresv2} €.</p>";
+
 
 $hotel1-> getReservClient();
 
