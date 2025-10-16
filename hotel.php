@@ -7,7 +7,7 @@ class Hotel {
     private string $_adresse;
     private string $_codepostal;
     private array $_chambres = []; // Liste des chambres de l'hôtel
-    private Chambre $etat;
+   // private Chambre $_etat;
 
     // --- CONSTRUCTEUR ---
     public function __construct(string $nom, int $nbetoile, string $ville, string $adresse, string $codepostal) {
