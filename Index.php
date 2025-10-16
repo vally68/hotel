@@ -31,32 +31,57 @@ foreach ($chambres as $ch) {
 }
 
 
-$cl1 = new client("Micka", "MURMANN");
-$cl2 = new client("Virgile", "GIBELLO");
+$cl1 = new client( "MURMANN", "Micka" );
+$cl2 = new client("GIBELLO", "Virgile" );
 
+// a revoir, trop bordélique et inutilement compliqué 
+$resv1 = new Reservation(3, new DateTime("2021-03-11"), new DateTime("2021-03-15"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[2]);
+$resv1->calculerSousTotal();
 
-$resv1 = new Reservation("Micka", "MURMANN", 3, new DateTime("2021-03-11"), new DateTime("2021-03-15"),
-    0, true, 2, 120, "Hilton", $cl1, $chambres[0]);
-$resv1->calculerPrixTotal();
+$resv2 = new Reservation( 4, new DateTime("2021-04-01"), new DateTime("2021-04-17"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[3]);
+$resv2->calculerSousTotal();
 
-$resv2 = new Reservation("Micka", "MURMANN", 4, new DateTime("2021-04-01"), new DateTime("2021-04-17"),
-    0, true, 2, 120, "Hilton", $cl1, $chambres[1]);
-$resv2->calculerPrixTotal();
-
-$resv3 = new Reservation("Virgile", "GIBELLO", 17, new DateTime("2021-01-01"), new DateTime("2021-01-02"),
+$resv3 = new Reservation( 17, new DateTime("2021-01-01"), new DateTime("2021-01-02"),
     0, true, 1, 120, "Hilton", $cl2, $chambres[16]);
-    $resv3->calculerPrixTotal();
+    $resv3->calculerSousTotal();
 
-    $resv4 = new Reservation("Micka", "MURMANN", 6, new DateTime("2021-05-01"), new DateTime("2021-05-17"),
-    0, true, 2, 120, "Hilton", $cl1, $chambres[6]);
-$resv4->calculerPrixTotal();
+    $resv4 = new Reservation( 6, new DateTime("2021-05-01"), new DateTime("2021-05-17"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[5]);
+$resv4->calculerSousTotal();
+
+ $resv5 = new Reservation( 6, new DateTime("2021-05-19"), new DateTime("2021-05-21"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[5]);
+$resv5->calculerSousTotal();
+
+ $resv6 = new Reservation( 6, new DateTime("2021-05-27"), new DateTime("2021-05-31"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[5]);
+$resv6->calculerSousTotal();
+
+ $resv7 = new Reservation( 6, new DateTime("2021-05-27"), new DateTime("2021-05-31"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[5]);
+$resv7->calculerSousTotal(); //mettre verif date? 
+
+ $resv8 = new Reservation( 18, new DateTime("2021-06-02"), new DateTime("2021-06-05"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[17]);
+$resv8->calculerSousTotal();
+
+ $resv9 = new Reservation( 18, new DateTime("2021-06-06"), new DateTime("2021-06-10"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[17]);
+$resv9->calculerSousTotal();
+
+ $resv10 = new Reservation(18, new DateTime("2021-06-11"), new DateTime("2021-06-14"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[17]);
+$resv10->calculerSousTotal();
+//var_dump($resv10);
 
     
 
-$reservations = [$resv1, $resv2, $resv3,$resv4];
+$reservations = [$resv1, $resv2, $resv3,$resv4,$resv5,$resv6,$resv7,$resv8,$resv9,$resv10];
 
 
-$nbResahotel = Reservation::ReservationsHotel($reservations, "Hilton");
+$nbResahotel = Reservation::ReservationsHotel($reservations, "Hilton"); // a revoir
 $nbResahotel2 = Reservation::ReservationsHotel($reservations, "Regent");
 
 
@@ -66,19 +91,19 @@ echo "<h4>Hotel Regent : $nbResahotel2 réservation(s).</h4>";
 
 
 $hotel1->AfficherInfos();
-var_dump($hotel1);
+//var_dump($hotel1);
 echo "<h4>Hotel Hilton : $nbResahotel réservation(s).</h4>";
 
-//$nbResaMicka = Reservation::ReservationsClient($reservations, "Micka", "MURMANN");
-//echo "<h4>$nbResaMicka réservation(s) pour Micka MURMANN.</h4>";
 
 
+// à améliorerdéplacer
 
-$totalresv = $resv1->getPrixTotal() + $resv2->getPrixTotal() + $resv4->getPrixTotal();
-echo "<p>Total : {$totalresv} €.</p>";
+$reservations = [$resv1, $resv2, $resv4, $resv5, $resv6, $resv7, $resv8, $resv9, $resv10];
+$totalresv2 = array_sum(array_map(fn($resa) => $resa->calculerSousTotal(), $reservations));
+echo "<p>Total : {$totalresv2} €. NF</p>";
 
 $hotel1-> getReservClient();
- //var_dump($hotel1);
+
 
 ?>
 

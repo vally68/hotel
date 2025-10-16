@@ -27,7 +27,7 @@ class Client {
 
     // Afficher les infos du client et ses réservations
     public function afficherInfosClient(): void {
-        echo "<h4>Réservations de {$this->_prenom} {$this->_nom}</h4>";
+        echo "<h4>Réservations de {$this->_nom} {$this->_prenom} </h4>";
         
         if (empty($this->_reservations)) {
             echo "<p>Aucune réservation.</p>";
