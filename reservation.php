@@ -15,7 +15,7 @@ class Reservation {
     private Chambre $_chambre;
 
     public function __construct(
-        string $nomreservation,
+        string $_nomreservation,
         string $prenomreservation,
         int $nbchambrer,
         DateTime $datedebut,
@@ -26,9 +26,9 @@ class Reservation {
         int $prixchambre,
         string $hotelr,
         Client $client,
-        Chambre $chambre
+        Chambre $_chambre
     ) {
-        $this->_nomreservation = $nomreservation;
+        $this->_nomreservation = $_nomreservation;
         $this->_prenomreservation = $prenomreservation;
         $this->_nbchambrer = $nbchambrer;
         $this->_datedebut = $datedebut;
@@ -39,11 +39,11 @@ class Reservation {
         $this->_prixchambre = $prixchambre;
         $this->_hotelr = $hotelr;
         $this->_client = $client;
-        $this->_chambre = $chambre;
+        $this->_chambre = $_chambre;
 
         // Lien bidirectionnel
         $client->ajouterReservation($this);
-        $chambre->ajouterReservation($this);
+        $_chambre->ajouterReservation($this);
     }
 
     // --- GETTERS ---

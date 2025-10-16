@@ -7,6 +7,7 @@ class Hotel {
     private string $_adresse;
     private string $_codepostal;
     private array $_chambres = []; // Liste des chambres de l'hôtel
+    private Chambre $etat;
 
     // --- CONSTRUCTEUR ---
     public function __construct(string $nom, int $nbetoile, string $ville, string $adresse, string $codepostal) {
@@ -15,6 +16,8 @@ class Hotel {
         $this->_ville = $ville;
         $this->_adresse = $adresse;
         $this->_codepostal = $codepostal;
+
+        
     }
 
     // --- GETTERS ---
@@ -24,6 +27,7 @@ class Hotel {
     public function getAdresse(): string { return $this->_adresse; }
     public function getCodePostal(): string { return $this->_codepostal; }
     public function getChambres(): array { return $this->_chambres; }
+    
 
     // --- GESTION DES CHAMBRES ---
     public function ajouterChambre(Chambre $chambre): void {
@@ -34,28 +38,49 @@ class Hotel {
         return count($this->_chambres); 
     }
 
-    public function getNbChambresReservees(): int {
-        $count = 0;
-        foreach ($this->_chambres as $chambre) {
-            if (!$chambre->getEtat()) $count++;
+//fonction en cours de création, non fini, true dispo, false reserve
+
+ public function getEtat(): array {
+    $chambrereserve = 0;
+    $chambrelibre = 0; 
+
+    foreach ($this->_chambres as $chambre) {
+        if ($chambre->getEtat() === true) {
+           $chambrelibre++;
+        } else {
+           $chambrereserve++;
         }
-        return $count;
     }
 
-    public function getNbChambresDisponibles(): int {
-        $count = 0;
-        foreach ($this->_chambres as $chambre) { 
-            if ($chambre->getEtat()) $count++;
-        }
-        return $count;
-    }
+    return [
+        'disponible' => $chambrelibre,
+        'reservee' => $chambrereserve
+    ];
+}
+
+
+    // public function getNbChambresReservees(): int {
+    //     $count = 0;
+    //     foreach ($this->_chambres as $chambre) {
+    //         if (!$chambre->getEtat()) $count++;
+    //     }
+    //     return $count;
+    // }
+
+    // public function getNbChambresDisponibles(): int {
+    //     $count = 0;
+    //     foreach ($this->_chambres as $chambre) { 
+    //         if ($chambre->getEtat()) $count++;
+    //     }
+    //     return $count;
+    // }
 
    
     public function getReservClient(): array {
         $map = [];
 
-        foreach ($this->_chambres as $chambre) {
-            $reservations = $chambre->getReservations();
+        foreach ($this->_chambres as $_chambre) {
+            $reservations = $_chambre->getReservations();
 
             if (!is_array($reservations)) {
                 continue; // sécurité
@@ -112,13 +137,17 @@ class Hotel {
 
     
     public function afficherInfos(): void {
-        $etoiles = str_repeat("*", $this->_nbetoile);
-
+        $etoiles = str_repeat("⭐", $this->_nbetoile);
+        $etat = $this->getEtat();
         echo "<h2>{$this->_nom} {$etoiles} - {$this->_ville}</h2>";
         echo "<p>{$this->_adresse}, {$this->_codepostal} {$this->_ville}</p>";
         echo "<p><strong>Nombre total de chambres :</strong> {$this->getNbChambres()}</p>";
-        echo "<p><strong>Chambres réservées :</strong> {$this->getNbChambresReservees()}</p>";
-        echo "<p><strong>Chambres disponibles :</strong> {$this->getNbChambresDisponibles()}</p>";
+        // echo "<p><strong>Chambres réservées :</strong> {$this->getNbChambresReservees()}</p>";
+        // echo "<p><strong>Chambres disponibles :</strong> {$this->getNbChambresDisponibles()}</p>";
+        
+
+        echo "<p><strong>Chambres disponibles :</strong> {$etat['disponible']} - <strong>Chambres réservées :</strong> {$etat['reservee']}</p>";
+
     }
 
    

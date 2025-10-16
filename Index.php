@@ -14,11 +14,11 @@ include "Reservation.php";
 
 // Création des chambres pour Hilton
 $chambres = [];
-for ($i = 1; $i <= 30; $i++) {
-    $etat = ($i <= 3) ? false : true; // 3 premières chambres réservées
-    $prix = ($i <= 15) ? 120 : 300;
-    $wifi = ($i % 2 == 0);
-    $chambres[] = new Chambre($prix, $i, $wifi, $etat);
+for ($i = 0; $i <= 29; $i++) {
+    $_etat = true; // 3 premières chambres réservées
+    $_prix = ($i <= 15) ? 120 : 300;
+    $_wifi = ($i % 2 == 0);
+    $chambres[] = new Chambre($_prix, $i, $_wifi, $_etat);
 }
 
 //création des hotels
@@ -47,19 +47,26 @@ $resv3 = new Reservation("Virgile", "GIBELLO", 17, new DateTime("2021-01-01"), n
     0, true, 1, 120, "Hilton", $cl2, $chambres[16]);
     $resv3->calculerPrixTotal();
 
-$reservations = [$resv1, $resv2, $resv3];
+    $resv4 = new Reservation("Micka", "MURMANN", 6, new DateTime("2021-05-01"), new DateTime("2021-05-17"),
+    0, true, 2, 120, "Hilton", $cl1, $chambres[6]);
+$resv4->calculerPrixTotal();
+
+    
+
+$reservations = [$resv1, $resv2, $resv3,$resv4];
 
 
 $nbResahotel = Reservation::ReservationsHotel($reservations, "Hilton");
 $nbResahotel2 = Reservation::ReservationsHotel($reservations, "Regent");
 
 
-echo $cl1->AfficherInfosClient(), $resv1->AfficherResa(), $resv2->AfficherResa();
+echo $cl1->AfficherInfosClient(), $resv1->AfficherResa(), $resv2->AfficherResa(), $resv4->AfficherResa();
 echo $cl2->AfficherInfosClient(), $resv3->AfficherResa();
 echo "<h4>Hotel Regent : $nbResahotel2 réservation(s).</h4>";
 
 
 $hotel1->AfficherInfos();
+var_dump($hotel1);
 echo "<h4>Hotel Hilton : $nbResahotel réservation(s).</h4>";
 
 //$nbResaMicka = Reservation::ReservationsClient($reservations, "Micka", "MURMANN");
@@ -67,7 +74,7 @@ echo "<h4>Hotel Hilton : $nbResahotel réservation(s).</h4>";
 
 
 
-$totalresv = $resv1->getPrixTotal() + $resv2->getPrixTotal();
+$totalresv = $resv1->getPrixTotal() + $resv2->getPrixTotal() + $resv4->getPrixTotal();
 echo "<p>Total : {$totalresv} €.</p>";
 
 $hotel1-> getReservClient();

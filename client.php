@@ -4,9 +4,9 @@ class Client {
     private string $_prenom;
     private array $_reservations = []; // Tableau des réservations du client
 
-    public function __construct(string $nom, string $prenom) {
-        $this->_nom = $nom;
-        $this->_prenom = $prenom;
+    public function __construct(string $_nom, string $_prenom) {
+        $this->_nom = $_nom;
+        $this->_prenom = $_prenom;
     }
 
     public function getNom(): string {
