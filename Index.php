@@ -53,24 +53,25 @@ $reservations = [$resv1, $resv2, $resv3];
 $nbResahotel = Reservation::ReservationsHotel($reservations, "Hilton");
 $nbResahotel2 = Reservation::ReservationsHotel($reservations, "Regent");
 
-echo "<h4>Hotel Hilton : $nbResahotel réservation(s).</h4>";
+
 echo $cl1->AfficherInfosClient(), $resv1->AfficherResa(), $resv2->AfficherResa();
 echo $cl2->AfficherInfosClient(), $resv3->AfficherResa();
 echo "<h4>Hotel Regent : $nbResahotel2 réservation(s).</h4>";
 
 
 $hotel1->AfficherInfos();
+echo "<h4>Hotel Hilton : $nbResahotel réservation(s).</h4>";
 
-$nbResaMicka = Reservation::ReservationsClient($reservations, "Micka", "MURMANN");
-echo "<h4>$nbResaMicka réservation(s) pour Micka MURMANN.</h4>";
+//$nbResaMicka = Reservation::ReservationsClient($reservations, "Micka", "MURMANN");
+//echo "<h4>$nbResaMicka réservation(s) pour Micka MURMANN.</h4>";
 
 
 
 $totalresv = $resv1->getPrixTotal() + $resv2->getPrixTotal();
 echo "<p>Total : {$totalresv} €.</p>";
 
- $hotel1-> getReservClient();
- var_dump($hotel1);
+$hotel1-> getReservClient();
+ //var_dump($hotel1);
 
 ?>
 

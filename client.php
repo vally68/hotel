@@ -34,7 +34,7 @@ class Client {
         } else {
             echo "<ul>";
             foreach ($this->_reservations as $reservation) {
-                echo "<li>{$reservation}</li>"; // __toString() de Reservation doit exister
+                echo "<li>{$reservation}</li>"; 
             }
             echo "</ul>";
         }
