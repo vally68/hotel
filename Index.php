@@ -14,7 +14,7 @@ include "Reservation.php";
 
 // Création des chambres pour Hilton
 $chambres = [];
-for ($i = 0; $i <= 29; $i++) {
+for ($i = 1; $i <= 30; $i++) {
     $_etat = true; // 3 premières chambres réservées
     $_prix = ($i <= 15) ? 120 : 300;
     $_wifi = ($i % 2 == 0);
