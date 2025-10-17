@@ -44,7 +44,7 @@ $resv2 = new Reservation( 4, new DateTime("2021-04-01"), new DateTime("2021-04-1
 $resv2->calculerSousTotal();
 
 $resv3 = new Reservation( 17, new DateTime("2021-01-01"), new DateTime("2021-01-02"),
-    0, true, 1, 120, "Hilton", $cl2, $chambres[16]);
+    0, true, 1, 300, "Hilton", $cl2, $chambres[16]);
     $resv3->calculerSousTotal();
 
     $resv4 = new Reservation( 6, new DateTime("2021-05-01"), new DateTime("2021-05-17"),
@@ -64,15 +64,15 @@ $resv6->calculerSousTotal();
 $resv7->calculerSousTotal(); //mettre verif date? 
 
  $resv8 = new Reservation( 18, new DateTime("2021-06-02"), new DateTime("2021-06-05"),
-    0, true, 2, 120, "Hilton", $cl1, $chambres[17]);
+    0, true, 2, 300, "Hilton", $cl1, $chambres[17]);
 $resv8->calculerSousTotal();
 
  $resv9 = new Reservation( 18, new DateTime("2021-06-06"), new DateTime("2021-06-10"),
-    0, true, 2, 120, "Hilton", $cl1, $chambres[17]);
+    0, true, 2, 300, "Hilton", $cl1, $chambres[17]);
 $resv9->calculerSousTotal();
 
  $resv10 = new Reservation(18, new DateTime("2021-06-11"), new DateTime("2021-06-14"),
-    0, true, 2, 120, "Hilton", $cl1, $chambres[17]);
+    0, true, 2, 300, "Hilton", $cl1, $chambres[17]);
 $resv10->calculerSousTotal();
 //var_dump($resv10);
 
