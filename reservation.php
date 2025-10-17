@@ -120,4 +120,12 @@ class Reservation {
         return array_sum(array_map(fn($resa) => $resa->calculerSousTotal(), $reservations));
     }
 
+//  public function afficherResatotal(): void {
+//     foreach($reservations as $resa){
+//         echo "Chambre {$this->_nbchambrer} ({$this->_nblit} lits, {$this->_prixchambre} €";
+//         echo ", WiFi : " . ($this->_wifietat ? "Oui" : "Non") . ")";
+//         echo " — Du " . $this->_datedebut->format('d-m-Y') . " au " . $this->_datefin->format('d-m-Y');
+//         echo " — Sous-total : {$this->_prixtotal} €<br>"; }
+//     }
+
 }

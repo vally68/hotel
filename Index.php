@@ -84,8 +84,17 @@ $reservations = [$resv1, $resv2, $resv3,$resv4,$resv5,$resv6,$resv7,$resv8,$resv
 $nbResahotel = Reservation::ReservationsHotel($reservations, "Hilton"); // a revoir
 $nbResahotel2 = Reservation::ReservationsHotel($reservations, "Regent");
 
+//a améliorer
+//fonction qui affiche toutes les réservation du client à faire
+echo $cl1->AfficherInfosClient(),
 
-echo $cl1->AfficherInfosClient(), $resv1->AfficherResa(), $resv2->AfficherResa(), $resv4->AfficherResa();
+ $resv1->AfficherResa(), $resv2->AfficherResa(), $resv4->AfficherResa(),
+$resv5->AfficherResa(),$resv6->AfficherResa(),$resv7->AfficherResa(),$resv8->AfficherResa(), $resv9->AfficherResa(),
+$resv10->AfficherResa();
+
+//echo $cl1-> afficherResatotal();
+
+
 echo $cl2->AfficherInfosClient(), $resv3->AfficherResa();
 echo "<h4>Hotel Regent : $nbResahotel2 réservation(s).</h4>";
 
